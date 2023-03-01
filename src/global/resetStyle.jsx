@@ -137,6 +137,7 @@ const ResetStyle = createGlobalStyle`
         background: transparent;
         color: inherit;
     }
+ 
     ::placeholder {
         color: inherit;
         font-family: inherit;
