@@ -1,7 +1,4 @@
-import { useState } from "react";
-import { IoPlayOutline } from "react-icons/io5";
 import styled from "styled-components";
-import FlipArrow from "./FlipArrow";
 
 const QuestionCard = styled.article`
   height: ${({ isOpen }) => (isOpen ? "fit-content" : "65px")};
@@ -27,7 +24,7 @@ const QuestionHeader = styled.header`
   font-size: ${({ theme }) => theme.md};
   font-weight: 700;
   svg {
-    font-size: 23px;
+    font-size: 26px;
     cursor: pointer;
   }
 `;
@@ -55,7 +52,7 @@ const FrontFace = styled.div`
 `;
 
 const BackFace = styled.div`
-  margin-top: -16px;
+  margin-top: ${({ theme }) => `calc(-${theme.lg} - 4px)`};
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -65,35 +62,4 @@ const BackFace = styled.div`
   will-change: transform;
 `;
 
-export default function FlashCard({ recall, index, onCardPlay }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isFlipped, setIsFlipped] = useState(false);
-
-  return (
-    <QuestionCard isFlipped={isFlipped} isOpen={isOpen}>
-      <QuestionHeader isOpen={isOpen}>
-        <h2>Pergunta {index + 1}</h2>
-        <IoPlayOutline
-          onClick={() => {
-            setIsOpen(true);
-            if (onCardPlay) onCardPlay();
-          }}
-        />
-      </QuestionHeader>
-      <QuestionMain isOpen={isOpen}>
-        <FrontFace>
-          {recall.question}
-          <FlipArrow onClick={() => setIsFlipped(true)} />
-        </FrontFace>
-        <BackFace>
-          {recall.answer}
-          <div>
-            <button>Botão 1</button>
-            <button>Botão 2</button>
-            <button>Botão 3</button>
-          </div>
-        </BackFace>
-      </QuestionMain>
-    </QuestionCard>
-  );
-}
+export { BackFace, FrontFace, QuestionCard, QuestionHeader, QuestionMain };
