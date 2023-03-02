@@ -13,7 +13,7 @@ const QuestionCard = styled.article`
   margin: 0 auto;
   padding: 22px 16px;
   transform-style: preserve-3d;
-  transition: transform ease 0.8s;
+  /* transition: transform ease 0.8s; */
   transform: ${({ isFlipped }) =>
     isFlipped ? "rotateY(180deg)" : "rotateY(0deg)"};
 `;
