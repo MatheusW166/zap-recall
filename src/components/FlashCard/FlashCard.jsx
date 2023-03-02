@@ -7,7 +7,7 @@ import {
   QuestionHeader,
   QuestionMain,
 } from "./styled";
-import FlipArrow from "../FlipArrow";
+import FlipArrow from "./FlipArrow";
 
 export default function FlashCard({ recall, index, onCardPlay }) {
   const [isOpen, setIsOpen] = useState(false);

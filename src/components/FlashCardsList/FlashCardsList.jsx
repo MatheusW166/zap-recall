@@ -1,4 +1,4 @@
-import FlashCard from "./FlashCard";
+import FlashCard from "../FlashCard";
 
 export default function FlashCardsList({ recalls, onCardPlay }) {
   return (

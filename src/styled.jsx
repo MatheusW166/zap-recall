@@ -38,7 +38,7 @@ const Header = styled.header`
 `;
 
 const Main = styled.div`
-  padding: 50px 0 86px 0;
+  padding-bottom: 86px;
   display: flex;
   flex-direction: column;
   gap: 25px;
