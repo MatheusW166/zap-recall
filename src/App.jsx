@@ -4,33 +4,14 @@ import { Container, Main, Header, Footer } from "./styled";
 import FlashCardsList from "./components/FlashCardsList";
 import ZapRecall from "./assets/lightning.png";
 import theme from "./theme";
-
-const recalls = [
-  {
-    question: "Alguma pergunta",
-    answer:
-      "Resposta da pergunta Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cumque dolores accusantium necessitatibus, ut aliquam. Enim, ipsa eos repellat unde repudiandae veritatis voluptates quas incidunt consequuntur tempore possimus illum quae?",
-  },
-  {
-    question: "Alguma pergunta 2",
-    answer:
-      "Resposta da pergunta Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cumque dolores accusantium necessitatibus, ut aliquam. Enim, ipsa eos repellat unde repudiandae veritatis voluptates quas incidunt consequuntur tempore possimus illum quae?",
-  },
-  {
-    question: "Alguma pergunta 3",
-    answer:
-      "Resposta da pergunta Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cumque dolores accusantium necessitatibus, ut aliquam. Enim, ipsa eos repellat unde repudiandae veritatis voluptates quas incidunt consequuntur tempore possimus illum quae?",
-  },
-  {
-    question: "Alguma pergunta 4",
-    answer:
-      "Resposta da pergunta Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cumque dolores accusantium necessitatibus, ut aliquam. Enim, ipsa eos repellat unde repudiandae veritatis voluptates quas incidunt consequuntur tempore possimus illum quae?",
-  },
-];
+import { useState } from "react";
+import recalls from "./recalls";
 
 function App() {
-  function handleFlashClick(index) {
-    console.log(`Abriou o ${index + 1}`);
+  const [doneRecalls, setDoneRecalls] = useState([]);
+
+  function handleFlashClick(answerType) {
+    setDoneRecalls([...doneRecalls, answerType]);
   }
 
   return (
@@ -44,9 +25,14 @@ function App() {
             <h1>ZapRecall</h1>
           </Header>
           <Main>
-            <FlashCardsList onCardPlay={handleFlashClick} recalls={recalls} />
+            <FlashCardsList
+              onCardAnswered={handleFlashClick}
+              recalls={recalls}
+            />
           </Main>
-          <Footer>0/154 CONCLUÍDOS</Footer>
+          <Footer>
+            {doneRecalls.length}/{recalls.length} CONCLUÍDOS
+          </Footer>
         </Container>
       </ThemeProvider>
     </>
