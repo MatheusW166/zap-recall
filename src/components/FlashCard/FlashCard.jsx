@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { IoPlayOutline } from "react-icons/io5";
 import {
-  AiFillCloseCircle,
-  AiFillCheckCircle,
-  AiFillQuestionCircle,
-} from "react-icons/ai";
-import {
   BackFace,
   FrontFace,
   QuestionCard,
@@ -16,6 +11,7 @@ import {
 } from "./styled";
 import FlipArrow from "./FlipArrow";
 import { buttonTypes } from "./constants";
+import { typeIcons } from "../../constants";
 
 export default function FlashCard({ recall, index, onCardAnswered }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,15 +31,7 @@ export default function FlashCard({ recall, index, onCardAnswered }) {
   }
 
   function headerIcon() {
-    if (answerType === "wrong") {
-      return <AiFillCloseCircle />;
-    }
-    if (answerType === "almostWrong") {
-      return <AiFillQuestionCircle />;
-    }
-    if (answerType === "right") {
-      return <AiFillCheckCircle />;
-    }
+    if (answerType) return typeIcons[answerType];
     return <IoPlayOutline onClick={handleCardPlay} />;
   }
 
