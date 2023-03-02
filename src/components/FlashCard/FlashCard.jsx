@@ -52,11 +52,11 @@ export default function FlashCard({ recall, index, onCardAnswered }) {
         {headerIcon()}
       </QuestionHeader>
       <QuestionMain isOpen={isOpen}>
-        <FrontFace data-test="flashcard-text">
+        <FrontFace isFlipped={isFlipped} data-test="flashcard-text">
           {recall.question}
           <FlipArrow onClick={() => setIsFlipped(true)} />
         </FrontFace>
-        <BackFace data-test="flashcard-text">
+        <BackFace isFlipped={isFlipped} data-test="flashcard-text">
           {recall.answer}
           <BackFaceButtons>
             {buttonTypes.map((btn) => (

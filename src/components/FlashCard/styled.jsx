@@ -53,9 +53,11 @@ const FrontFace = styled.div`
   }
   backface-visibility: hidden;
   line-height: 21.6px;
+  visibility: ${({ isFlipped }) => isFlipped && "hidden"};
 `;
 
 const BackFace = styled.div`
+  visibility: ${({ isFlipped }) => !isFlipped && "hidden"};
   margin-top: ${({ theme }) => `calc(-${theme.lg} - 4px)`};
   display: flex;
   flex-direction: column;
