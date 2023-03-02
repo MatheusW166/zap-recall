@@ -1,11 +1,13 @@
 import { ResetStyle, GlobalStyle } from "./global";
 import { ThemeProvider } from "styled-components";
-import { Container, Main, Header, Footer } from "./styled";
+import { Container, Main, Header } from "./styled";
+import { Footer } from "./components/Footer";
 import FlashCardsList from "./components/FlashCardsList";
 import ZapRecall from "./assets/lightning.png";
 import theme from "./theme";
 import { useState } from "react";
 import recalls from "./recalls";
+import { types, hitPercentMessages } from "./constants";
 
 function App() {
   const [doneRecalls, setDoneRecalls] = useState([]);
@@ -13,6 +15,16 @@ function App() {
   function handleFlashClick(answerType) {
     setDoneRecalls([...doneRecalls, answerType]);
   }
+
+  function getHitPercentMessage() {
+    if (doneRecalls.length !== recalls.length) return;
+    if (doneRecalls.includes(types.wrong)) {
+      return hitPercentMessages.bad;
+    }
+    return hitPercentMessages.good;
+  }
+
+  const message = getHitPercentMessage();
 
   return (
     <>
@@ -30,9 +42,11 @@ function App() {
               recalls={recalls}
             />
           </Main>
-          <Footer>
-            {doneRecalls.length}/{recalls.length} CONCLUÍDOS
-          </Footer>
+          <Footer
+            total={recalls.length}
+            doneRecalls={doneRecalls}
+            message={message}
+          />
         </Container>
       </ThemeProvider>
     </>

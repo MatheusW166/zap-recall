@@ -1,6 +1,7 @@
 export default function FlipArrow({ onClick }) {
   return (
     <svg
+      data-test="turn-btn"
       onClick={onClick}
       width="30"
       height="20"

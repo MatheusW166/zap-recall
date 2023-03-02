@@ -13,6 +13,12 @@ import FlipArrow from "./FlipArrow";
 import { buttonTypes } from "./constants";
 import { typeIcons } from "../../constants";
 
+const dataTestsButtons = {
+  wrong: "no-btn",
+  almostWrong: "partial-btn",
+  right: "zap-btn",
+};
+
 export default function FlashCard({ recall, index, onCardAnswered }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
@@ -32,28 +38,30 @@ export default function FlashCard({ recall, index, onCardAnswered }) {
 
   function headerIcon() {
     if (answerType) return typeIcons[answerType];
-    return <IoPlayOutline onClick={handleCardPlay} />;
+    return <IoPlayOutline data-test="play-btn" onClick={handleCardPlay} />;
   }
 
   return (
     <QuestionCard
+      data-test="flashcard"
       onTransitionEnd={() => !isFlipped && setIsOpen(false)}
       isFlipped={isFlipped}
       isOpen={isOpen}>
       <QuestionHeader answerType={answerType} isOpen={isOpen}>
-        <h2>Pergunta {index + 1}</h2>
+        <h2 data-test="flashcard-text">Pergunta {index + 1}</h2>
         {headerIcon()}
       </QuestionHeader>
       <QuestionMain isOpen={isOpen}>
-        <FrontFace>
+        <FrontFace data-test="flashcard-text">
           {recall.question}
           <FlipArrow onClick={() => setIsFlipped(true)} />
         </FrontFace>
-        <BackFace>
+        <BackFace data-test="flashcard-text">
           {recall.answer}
           <BackFaceButtons>
             {buttonTypes.map((btn) => (
               <BackFaceButton
+                data-test={dataTestsButtons[btn.type]}
                 key={btn.type}
                 onClick={() => handleBackFaceButton(btn.type)}
                 answerType={btn.type}>
