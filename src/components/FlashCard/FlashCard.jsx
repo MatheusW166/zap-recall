@@ -20,7 +20,7 @@ export default function FlashCard({ recall, index, onCardPlay }) {
         <IoPlayOutline
           onClick={() => {
             setIsOpen(true);
-            if (onCardPlay) onCardPlay();
+            if (onCardPlay) onCardPlay(index);
           }}
         />
       </QuestionHeader>

@@ -8,7 +8,7 @@ export default function FlashCardsList({ recalls, onCardPlay }) {
           key={recall.question}
           index={index}
           recall={recall}
-          onCardPlay={() => onCardPlay(index)}
+          onCardPlay={onCardPlay}
         />
       ))}
     </>
