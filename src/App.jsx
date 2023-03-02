@@ -16,15 +16,13 @@ function App() {
     setDoneRecalls([...doneRecalls, answerType]);
   }
 
-  function getHitPercentMessage() {
+  const message = (() => {
     if (doneRecalls.length !== recalls.length) return;
     if (doneRecalls.includes(types.wrong)) {
       return hitPercentMessages.bad;
     }
     return hitPercentMessages.good;
-  }
-
-  const message = getHitPercentMessage();
+  })();
 
   return (
     <>

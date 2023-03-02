@@ -26,6 +26,7 @@ export default function FlashCard({ recall, index, onCardAnswered }) {
 
   function handleBackFaceButton(answerType) {
     setIsFlipped(false);
+    setIsOpen(false);
     setAnswerType(answerType);
     if (onCardAnswered) onCardAnswered(answerType);
   }
@@ -44,7 +45,7 @@ export default function FlashCard({ recall, index, onCardAnswered }) {
   return (
     <QuestionCard
       data-test="flashcard"
-      onTransitionEnd={() => !isFlipped && setIsOpen(false)}
+      // onTransitionEnd={() => !isFlipped && setIsOpen(false)}
       isFlipped={isFlipped}
       isOpen={isOpen}>
       <QuestionHeader answerType={answerType} isOpen={isOpen}>

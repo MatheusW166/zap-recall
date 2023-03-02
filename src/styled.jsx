@@ -25,7 +25,7 @@ const Header = styled.header`
 `;
 
 const Main = styled.div`
-  padding-bottom: 86px;
+  padding-bottom: 186px;
   display: flex;
   flex-direction: column;
   gap: 25px;

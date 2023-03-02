@@ -45,15 +45,15 @@ const QuestionMain = styled.main`
 const FrontFace = styled.div`
   width: 100%;
   height: 100%;
+  backface-visibility: hidden;
+  line-height: 21.6px;
+  visibility: ${({ isFlipped }) => isFlipped && "hidden"};
   svg {
     position: absolute;
     right: 0;
     bottom: -12px;
     cursor: pointer;
   }
-  backface-visibility: hidden;
-  line-height: 21.6px;
-  visibility: ${({ isFlipped }) => isFlipped && "hidden"};
 `;
 
 const BackFace = styled.div`

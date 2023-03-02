@@ -6,6 +6,7 @@ const FooterContainer = styled.footer`
   left: 0;
   padding: 16px;
   min-height: 70px;
+  max-height: 186px;
   width: 100%;
   background: ${({ theme }) => theme.overBackground};
   font-size: ${({ theme }) => theme.lg};
