@@ -35,7 +35,9 @@ export default function InitPage({ onClickInit }) {
     <InitPageContainer>
       <img src={Lightning} alt="logo" />
       <h1>ZapRecall</h1>
-      <InitButton onClick={onClickInit}>Iniciar Recall!</InitButton>
+      <InitButton data-test="start-btn" onClick={onClickInit}>
+        Iniciar Recall!
+      </InitButton>
     </InitPageContainer>
   );
 }
