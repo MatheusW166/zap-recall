@@ -9,7 +9,10 @@ const GlobalStyle = createGlobalStyle`
         font-family: "Recursive", sans-serif;
     }
     h1 {
-        font-family: "Righteous";
+        height: fit-content;
+        font-family: "Righteous", sans-serif;
+        color: ${({ theme }) => theme.overBackground};
+        font-size: ${({ theme }) => theme.xs};
     }
 `;
 
