@@ -1,6 +1,6 @@
 import FlashCard from "../FlashCard";
 
-export default function FlashCardsList({ recalls, onCardPlay }) {
+export default function FlashCardsList({ recalls, onCardAnswered }) {
   return (
     <>
       {recalls.map((recall, index) => (
@@ -8,7 +8,7 @@ export default function FlashCardsList({ recalls, onCardPlay }) {
           key={recall.question}
           index={index}
           recall={recall}
-          onCardPlay={onCardPlay}
+          onCardAnswered={onCardAnswered}
         />
       ))}
     </>
