@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
         height: fit-content;
         font-family: "Righteous", sans-serif;
         color: ${({ theme }) => theme.overBackground};
-        font-size: ${({ theme }) => theme.xs};
+        font-size: ${({ theme }) => theme.xl};
     }
 `;
 

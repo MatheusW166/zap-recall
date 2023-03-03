@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { IoPlayOutline } from "react-icons/io5";
 import {
   BackFace,
@@ -23,16 +23,15 @@ export default function FlashCard({ recall, index, onCardAnswered }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
   const [answerType, setAnswerType] = useState();
+  const backfaceRef = useRef(null);
 
   function handleBackFaceButton(answerType) {
     setIsFlipped(false);
-    setIsOpen(false);
     setAnswerType(answerType);
     if (onCardAnswered) onCardAnswered(answerType);
   }
 
   function handleCardPlay() {
-    // Se já respondeu, não faz nada
     if (answerType) return;
     setIsOpen(true);
   }
@@ -45,19 +44,27 @@ export default function FlashCard({ recall, index, onCardAnswered }) {
   return (
     <QuestionCard
       data-test="flashcard"
-      // onTransitionEnd={() => !isFlipped && setIsOpen(false)}
+      answerType={answerType}
       isFlipped={isFlipped}
-      isOpen={isOpen}>
+      isOpen={isOpen}
+      backFaceRef={backfaceRef}
+      onTransitionEnd={() => answerType && setIsOpen(false)}>
       <QuestionHeader answerType={answerType} isOpen={isOpen}>
         <h2 data-test="flashcard-text">Pergunta {index + 1}</h2>
         {headerIcon()}
       </QuestionHeader>
       <QuestionMain isOpen={isOpen}>
-        <FrontFace isFlipped={isFlipped} data-test="flashcard-text">
+        <FrontFace
+          isOpen={isOpen}
+          isFlipped={isFlipped}
+          data-test="flashcard-text">
           {recall.question}
           <FlipArrow onClick={() => setIsFlipped(true)} />
         </FrontFace>
-        <BackFace isFlipped={isFlipped} data-test="flashcard-text">
+        <BackFace
+          ref={backfaceRef}
+          isFlipped={isFlipped}
+          data-test="flashcard-text">
           {recall.answer}
           <BackFaceButtons>
             {buttonTypes.map((btn) => (

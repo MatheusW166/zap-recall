@@ -13,13 +13,15 @@ export default function MainPage() {
     setDoneRecalls([...doneRecalls, answerType]);
   }
 
-  const message = (() => {
+  function getPercentMessage() {
     if (doneRecalls.length !== recalls.length) return;
     if (doneRecalls.includes(types.wrong)) {
       return hitPercentMessages.bad;
     }
     return hitPercentMessages.good;
-  })();
+  }
+
+  const message = getPercentMessage();
 
   return (
     <>

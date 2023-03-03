@@ -17,7 +17,7 @@ const FooterContainer = styled.footer`
 `;
 
 const TypeIcons = styled.div`
-  display: flex;
+  display: ${({ doneRecalls }) => (doneRecalls?.length ? "flex" : "none")};
   justify-content: center;
   margin-top: 6px;
   gap: 5px;

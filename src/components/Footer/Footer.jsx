@@ -16,7 +16,7 @@ export default function Footer({ message, total, doneRecalls }) {
         </HitPercentMessage>
       )}
       {doneRecalls.length}/{total} CONCLUÍDOS
-      <TypeIcons>
+      <TypeIcons doneRecalls={doneRecalls}>
         {doneRecalls.map((answerType, idx) => (
           <TypeIconWrapper answerType={answerType} key={idx}>
             {typeIcons[answerType]}

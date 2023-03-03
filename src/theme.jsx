@@ -11,7 +11,7 @@ const theme = {
   // Fonts Size
   md: "16px",
   lg: "18px",
-  xs: "36px",
+  xl: "36px",
 };
 
 export default theme;

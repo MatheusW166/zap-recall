@@ -1,25 +1,50 @@
 import styled from "styled-components";
 
+function calcFlashCardHeight({ isOpen, isFlipped, answerType, backFaceRef }) {
+  if (!isOpen) {
+    return "65px";
+  }
+  const verticalPadding = 44;
+  const yTranslate = isFlipped || (!isFlipped && answerType) ? 0 : 22;
+  const expandedHeight =
+    backFaceRef?.current.clientHeight + yTranslate + verticalPadding;
+  return `${expandedHeight}px`;
+}
+
+const FlashCardPadding = "22px 16px";
+const FlashCardWidth = "min(500px, calc(100% - 64px))";
+
 const QuestionCard = styled.article`
-  height: ${({ isOpen }) => (isOpen ? "fit-content" : "65px")};
-  width: min(500px, calc(100% - 64px));
+  height: ${(props) => calcFlashCardHeight(props)};
+  width: ${FlashCardWidth};
   font-size: ${({ theme }) => theme.md};
-  background: ${({ theme, isOpen }) =>
+  background-color: ${({ theme, isOpen }) =>
     isOpen ? theme.questionCard : theme.overBackground};
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
   display: flex;
   align-items: center;
   margin: 0 auto;
-  padding: 22px 16px;
+  padding: ${FlashCardPadding};
   transform-style: preserve-3d;
-  /* transition: transform ease 0.8s; */
+  transition: transform ease 0.6s, height ease 0.6s, background-color ease 0.6s;
   transform: ${({ isFlipped }) =>
     isFlipped ? "rotateY(180deg)" : "rotateY(0deg)"};
+  position: relative;
 `;
 
 const QuestionHeader = styled.header`
-  display: ${({ isOpen }) => (isOpen ? "none" : "flex")};
+  ${({ isOpen }) =>
+    isOpen &&
+    `
+    position: absolute;
+    left: 0;
+    padding: ${FlashCardPadding};
+    opacity: 0;
+    `}
+  height: 100%;
+  transition: opacity ease 0.3s;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -34,20 +59,25 @@ const QuestionHeader = styled.header`
 `;
 
 const QuestionMain = styled.main`
-  display: ${({ isOpen }) => !isOpen && "none"};
+  ${({ isOpen }) =>
+    !isOpen &&
+    `
+    visibility: hidden;
+    position: absolute;
+   `}
   transform-style: preserve-3d;
   width: 100%;
   height: 100%;
-  position: relative;
   font-size: ${({ theme }) => theme.lg};
 `;
 
 const FrontFace = styled.div`
+  opacity: ${({ isOpen }) => !isOpen && 0};
+  transition: opacity ease 0.5s 0.3s;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden;
   line-height: 21.6px;
-  visibility: ${({ isFlipped }) => isFlipped && "hidden"};
+  backface-visibility: hidden;
   svg {
     position: absolute;
     right: 0;
@@ -57,8 +87,8 @@ const FrontFace = styled.div`
 `;
 
 const BackFace = styled.div`
-  visibility: ${({ isFlipped }) => !isFlipped && "hidden"};
-  margin-top: ${({ theme }) => `calc(-${theme.lg} - 4px)`};
+  position: absolute;
+  top: 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
