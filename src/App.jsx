@@ -1,10 +1,10 @@
 import { ResetStyle, GlobalStyle } from "./global";
 import { ThemeProvider } from "styled-components";
-import { Container } from "./styled";
-import theme from "./theme";
 import { useState } from "react";
+import { Container } from "./styled";
 import { InitPage } from "./pages/InitPage";
 import { MainPage } from "./pages/MainPage";
+import theme from "./theme";
 
 function App() {
   const [showInit, setShowInit] = useState(true);
