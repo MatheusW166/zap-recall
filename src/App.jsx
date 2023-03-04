@@ -15,8 +15,11 @@ function App() {
         <ResetStyle />
         <GlobalStyle />
         <Container>
-          {showInit && <InitPage onClickInit={() => setShowInit(false)} />}
-          {!showInit && <MainPage />}
+          {showInit ? (
+            <InitPage onClickInit={() => setShowInit(false)} />
+          ) : (
+            <MainPage />
+          )}
         </Container>
       </ThemeProvider>
     </>
