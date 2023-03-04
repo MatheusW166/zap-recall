@@ -25,7 +25,7 @@ export default function MainPage() {
 
   return (
     <>
-      <Header>
+      <Header recallsNumber={recalls.length}>
         <img src={ZapRecall} alt="logo" />
         <h1>ZapRecall</h1>
       </Header>
@@ -33,7 +33,7 @@ export default function MainPage() {
         <FlashCardsList onCardAnswered={handleFlashClick} recalls={recalls} />
       </Main>
       <Footer
-        total={recalls.length}
+        recallsNumber={recalls.length}
         doneRecalls={doneRecalls}
         message={message}
       />

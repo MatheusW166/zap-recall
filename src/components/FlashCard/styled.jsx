@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-function calcFlashCardHeight({ isOpen, isFlipped, answerType, backFaceRef }) {
+function calcCardHeight({ isOpen, isFlipped, answerType, backFaceRef }) {
   if (!isOpen) {
     return "65px";
   }
@@ -11,26 +11,50 @@ function calcFlashCardHeight({ isOpen, isFlipped, answerType, backFaceRef }) {
   return `${expandedHeight}px`;
 }
 
-const FlashCardPadding = "22px 16px";
-const FlashCardWidth = "min(500px, calc(100% - 64px))";
+function initialOpacity({ isOpen, answerType }) {
+  if (!isOpen && !answerType) {
+    return 0;
+  }
+  return 1;
+}
+
+const DURATION = "0.8s";
+
+function setUpAnimation({ index, isOpen, answerType }) {
+  if (isOpen || answerType) {
+    return "none";
+  }
+  return `entrance ${DURATION} ${0.1 * index}s ease forwards`;
+}
+
+function cardFlip({ isFlipped }) {
+  return isFlipped ? "rotateY(180deg)" : "rotateY(0deg)";
+}
+
+function cardBackgroundColor({ isOpen, theme }) {
+  return isOpen ? theme.questionCard : theme.overBackground;
+}
+
+const CARD_PADDING = "22px 16px";
+const CARD_WIDTH = "min(500px, calc(100% - 64px))";
 
 const QuestionCard = styled.article`
-  height: ${(props) => calcFlashCardHeight(props)};
-  width: ${FlashCardWidth};
+  position: relative;
+  width: ${CARD_WIDTH};
+  height: ${(props) => calcCardHeight(props)};
+  background-color: ${(props) => cardBackgroundColor(props)};
   font-size: ${({ theme }) => theme.md};
-  background-color: ${({ theme, isOpen }) =>
-    isOpen ? theme.questionCard : theme.overBackground};
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
   display: flex;
   align-items: center;
   margin: 0 auto;
-  padding: ${FlashCardPadding};
+  padding: ${CARD_PADDING};
   transform-style: preserve-3d;
   transition: transform ease 0.6s, height ease 0.6s, background-color ease 0.6s;
-  transform: ${({ isFlipped }) =>
-    isFlipped ? "rotateY(180deg)" : "rotateY(0deg)"};
-  position: relative;
+  transform: ${(props) => cardFlip(props)};
+  opacity: ${(props) => initialOpacity(props)};
+  animation: ${(props) => setUpAnimation(props)};
 `;
 
 const QuestionHeader = styled.header`
@@ -39,7 +63,7 @@ const QuestionHeader = styled.header`
     `
     position: absolute;
     left: 0;
-    padding: ${FlashCardPadding};
+    padding: ${CARD_PADDING};
     opacity: 0;
     `}
   height: 100%;

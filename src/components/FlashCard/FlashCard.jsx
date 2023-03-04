@@ -44,6 +44,7 @@ export default function FlashCard({ recall, index, onCardAnswered }) {
   return (
     <QuestionCard
       data-test="flashcard"
+      index={index}
       answerType={answerType}
       isFlipped={isFlipped}
       isOpen={isOpen}

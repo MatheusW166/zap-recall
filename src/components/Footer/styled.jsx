@@ -14,6 +14,19 @@ const FooterContainer = styled.footer`
   place-content: center;
   box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
   text-align: center;
+
+  transform: translateY(100%);
+  animation: bottomToTop 0.8s ${({ recallsNumber }) => recallsNumber * 0.1}s
+    ease forwards;
+
+  @keyframes bottomToTop {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
 `;
 
 const TypeIcons = styled.div`

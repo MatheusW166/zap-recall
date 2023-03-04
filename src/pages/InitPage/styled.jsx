@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+const DURATION = "0.45s";
+
 function animationInitialState(exiting) {
   const isEntering = !exiting;
   if (isEntering) {
@@ -15,15 +17,19 @@ function animationInitialState(exiting) {
 }
 
 function singleAnimationSetup(exiting) {
-  const animation = exiting ? "exiting" : "entrance";
+  const animation = exiting ? "exit" : "entrance";
   const animatedTags = ["img", "h1", "button"];
   exiting && animatedTags.reverse();
   let setUp = "";
   for (let i in animatedTags) {
     setUp += `
     ${animatedTags[i]} {
-      animation: ${animation} 0.8s 
-        0.${2 * i}s ease forwards;
+      animation: 
+        ${animation} 
+        ${DURATION} 
+        0.${2 * i}s 
+        ease 
+        forwards;
       }
     `;
   }
@@ -40,32 +46,6 @@ const InitPageContainer = styled.main`
 
   ${({ exiting }) => animationInitialState(exiting)}
   ${({ exiting }) => singleAnimationSetup(exiting)}
-
-  @keyframes entrance {
-    from {
-      opacity: 0;
-      transform: translateX(-150px);
-      visibility: hidden;
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-      visibility: visible;
-    }
-  }
-
-  @keyframes exiting {
-    from {
-      opacity: 1;
-      transform: translateX(0);
-      visibility: visible;
-    }
-    to {
-      opacity: 0;
-      transform: translateX(150px);
-      visibility: hidden;
-    }
-  }
 `;
 
 const InitButton = styled.button`

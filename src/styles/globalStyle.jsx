@@ -14,6 +14,32 @@ const GlobalStyle = createGlobalStyle`
         color: ${({ theme }) => theme.overBackground};
         font-size: ${({ theme }) => theme.xl};
     }
+
+    @keyframes entrance {
+        from {
+            opacity: 0;
+            transform: translateX(-150px);
+            visibility: hidden;
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+            visibility: visible;
+        }
+    }
+
+    @keyframes exit {
+        from {
+            opacity: 1;
+            transform: translateX(0);
+            visibility: visible;
+        }
+        to {
+            opacity: 0;
+            transform: translateX(150px);
+            visibility: hidden;
+        }
+    }
 `;
 
 export default GlobalStyle;
