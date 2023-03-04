@@ -1,4 +1,4 @@
-import { ResetStyle, GlobalStyle } from "./global";
+import { ResetStyle, GlobalStyle } from "./styles";
 import { ThemeProvider } from "styled-components";
 import { useState } from "react";
 import { Container } from "./styled";
