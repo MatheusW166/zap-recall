@@ -2,7 +2,7 @@ import { useState } from "react";
 import { InitButton, InitPageContainer, Inputs } from "./styled";
 import Lightning from "../../assets/lightning_lg.png";
 import recalls, { recallsOptions } from "../../recalls";
-import CustomSelect from "../../components/CustomSelect/CustomSelect";
+import CustomSelect from "../../components/CustomSelect";
 
 export default function InitPage({
   onClickInit,
