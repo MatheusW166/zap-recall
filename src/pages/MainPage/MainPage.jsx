@@ -1,12 +1,11 @@
 import { Footer } from "../../components/Footer";
 import FlashCardsList from "../../components/FlashCardsList";
 import ZapRecall from "../../assets/lightning.png";
-import recalls from "../../recalls";
 import { types, hitPercentMessages } from "../../constants";
 import { useState } from "react";
 import { Header, Main } from "./styled";
 
-export default function MainPage() {
+export default function MainPage({ recalls }) {
   const [doneRecalls, setDoneRecalls] = useState([]);
 
   function handleFlashClick(answerType) {

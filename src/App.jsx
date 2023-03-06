@@ -8,6 +8,7 @@ import theme from "./theme";
 
 function App() {
   const [showInit, setShowInit] = useState(true);
+  const [selectedRecalls, setSelectedRecalls] = useState();
 
   return (
     <>
@@ -16,9 +17,13 @@ function App() {
         <GlobalStyle />
         <Container>
           {showInit ? (
-            <InitPage onClickInit={() => setShowInit(false)} />
+            <InitPage
+              selectedRecalls={selectedRecalls}
+              setSelectedRecalls={setSelectedRecalls}
+              onClickInit={() => setShowInit(false)}
+            />
           ) : (
-            <MainPage />
+            <MainPage recalls={selectedRecalls} />
           )}
         </Container>
       </ThemeProvider>

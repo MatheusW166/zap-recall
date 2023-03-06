@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const DURATION = "0.8s";
+const DURATION = "0.6s";
 
 function animationSetup({ recallsNumber }, aditionalDelay = 0) {
   const delay = recallsNumber * 0.1 + aditionalDelay;

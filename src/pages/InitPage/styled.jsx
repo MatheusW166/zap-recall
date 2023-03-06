@@ -8,7 +8,8 @@ function animationInitialState(exiting) {
     return `
         img,
         h1,
-        button {
+        button, 
+        .select-container {
           opacity: 0;
           visibility: hidden;
         }
@@ -18,7 +19,7 @@ function animationInitialState(exiting) {
 
 function singleAnimationSetup(exiting) {
   const animation = exiting ? "exit" : "entrance";
-  const animatedTags = ["img", "h1", "button"];
+  const animatedTags = ["img", "h1", ".select-container", "button"];
   exiting && animatedTags.reverse();
   let setUp = "";
   for (let i in animatedTags) {
@@ -49,17 +50,16 @@ const InitPageContainer = styled.main`
 `;
 
 const InitButton = styled.button`
-  background: ${({ theme }) => theme.overBackground};
   color: ${({ theme }) => theme.initButton};
-  font-size: ${({ theme }) => theme.lg};
   width: min(246px, 100%);
   height: 54px;
   border-radius: 5px;
+  background: ${({ theme }) => theme.overBackground};
+  font-size: ${({ theme }) => theme.lg};
   border: 1px solid ${({ theme }) => theme.initButton};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-  margin-top: 16px;
-  cursor: pointer;
   transition: filter ease 0.3s, box-shadow ease 0.3s;
+  cursor: pointer;
   &:hover {
     filter: brightness(0.9);
   }
@@ -68,4 +68,13 @@ const InitButton = styled.button`
   }
 `;
 
-export { InitButton, InitPageContainer };
+const Inputs = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 24px;
+  gap: 12px;
+`;
+
+export { InitButton, InitPageContainer, Inputs };

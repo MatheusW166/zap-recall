@@ -1,9 +1,25 @@
 import { useState } from "react";
+import { InitButton, InitPageContainer, Inputs } from "./styled";
 import Lightning from "../../assets/lightning_lg.png";
-import { InitButton, InitPageContainer } from "./styled";
+import recalls, { recallsOptions } from "../../recalls";
+import CustomSelect from "../../components/CustomSelect/CustomSelect";
 
-export default function InitPage({ onClickInit }) {
+export default function InitPage({
+  onClickInit,
+  setSelectedRecalls,
+  selectedRecalls,
+}) {
   const [exiting, setExiting] = useState(false);
+
+  function handleRecallSelect(recall) {
+    setSelectedRecalls(recalls[recall]);
+  }
+
+  function handleRecallInit() {
+    if (!selectedRecalls) return;
+    setExiting(true);
+  }
+
   return (
     <InitPageContainer exiting={exiting}>
       <img
@@ -12,9 +28,15 @@ export default function InitPage({ onClickInit }) {
         alt="logo"
       />
       <h1>ZapRecall</h1>
-      <InitButton data-test="start-btn" onClick={() => setExiting(true)}>
-        Iniciar Recall!
-      </InitButton>
+
+      <Inputs>
+        <CustomSelect setItem={handleRecallSelect} options={recallsOptions}>
+          Escolha o tema
+        </CustomSelect>
+        <InitButton data-test="start-btn" onClick={handleRecallInit}>
+          Iniciar Recall!
+        </InitButton>
+      </Inputs>
     </InitPageContainer>
   );
 }

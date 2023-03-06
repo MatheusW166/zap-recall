@@ -16,7 +16,7 @@ const FooterContainer = styled.footer`
   text-align: center;
 
   transform: translateY(100%);
-  animation: bottomToTop 0.8s ${({ recallsNumber }) => recallsNumber * 0.1}s
+  animation: bottomToTop 0.6s ${({ recallsNumber }) => recallsNumber * 0.1}s
     ease forwards;
 
   @keyframes bottomToTop {

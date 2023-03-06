@@ -88,7 +88,8 @@ const ResetStyle = createGlobalStyle`
     time,
     mark,
     audio,
-    video {
+    video,
+    select {
         margin: 0;
         padding: 0;
         border: 0;

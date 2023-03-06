@@ -18,7 +18,7 @@ function initialOpacity({ isOpen, answerType }) {
   return 1;
 }
 
-const DURATION = "0.8s";
+const DURATION = "0.6s";
 
 function setUpAnimation({ index, isOpen, answerType }) {
   if (isOpen || answerType) {
@@ -115,11 +115,14 @@ const BackFace = styled.div`
   top: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  justify-content: space-between;
+  gap: 32px;
   transform: rotateY(180deg);
   backface-visibility: hidden;
   line-height: 21.6px;
   will-change: transform;
+  width: 100%;
+  min-height: 100%;
 `;
 
 const BackFaceButtons = styled.div`
@@ -127,6 +130,7 @@ const BackFaceButtons = styled.div`
   justify-content: space-between;
   gap: 16px;
   min-height: 38px;
+  transform: translateY(10px);
 `;
 
 const BackFaceButton = styled.button`
@@ -134,7 +138,6 @@ const BackFaceButton = styled.button`
   border-radius: 5px;
   min-height: 100%;
   font-size: 12px;
-  transform: translateY(12px);
   color: ${({ theme }) => theme.overBackground};
   background: ${({ theme, answerType }) => theme[answerType]};
   cursor: pointer;
